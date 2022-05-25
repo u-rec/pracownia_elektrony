@@ -13,7 +13,7 @@ class ResultBuilder:
         self.text.append(message)
 
     def save(self, filename):
-        file = open(directory + datetime.now().strftime("%H_%M_%S_") + filename, "a")
+        file = open(directory + datetime.now().strftime("%Y.%m.%d_%H:%M_") + filename, "a")
         file.write('\t'.join(self.headers) + '\n')
         for message in self.text:
             file.write('\t'.join(message)+'\n')

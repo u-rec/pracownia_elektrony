@@ -5,6 +5,15 @@ import numpy as np
 directory = '/home/jurek/Documents/Studia/VI/pracownia/elektrony/pomiary'
 
 
+class Series:
+    def __init__(self, dist, v, plots, file):
+        self.distance = dist
+        self.voltage = v
+        self.plot_source = plots[0]
+        self.plot_receiver = plots[1]
+        self.file = file
+
+
 def read_file(filename):
     f = open(filename, "r")
     lines = f.readlines()
@@ -41,4 +50,4 @@ def get_next_file():
         new_dir = os.path.join(directory, filename)
         if os.path.isdir(new_dir):
             for file in os.listdir(new_dir):
-                yield dist, voltage, read_file(os.path.join(new_dir, file)), file
+                yield Series(dist, voltage, read_file(os.path.join(new_dir, file)), file)
